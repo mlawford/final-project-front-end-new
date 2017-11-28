@@ -1,5 +1,5 @@
 //UserForm.js
-import React, { Component } from ‘react’;
+import React, { Component } from 'react';
 class UserForm extends Component {
  constructor(props) {
  super(props);
@@ -15,21 +15,25 @@ class UserForm extends Component {
  handleSubmit(e) {
    e.preventDefault();
    console.log(`${this.state.name}`)
+   
+  this.props.onUserSubmit({ name: this.state.name});
+  this.setState({ name:''});
    //we will be tying this into the POST method in a bit
  }
+
  render() {
    return (
      <form onSubmit={ this.handleSubmit }>
 
        <input
-       type=’text’
-       placeholder=’Your name…’
+       type='text'
+       placeholder='Your name…'
        value={ this.state.name }
        onChange={ this.handleUserChange } />
 
        <input
-       type=’submit’
-       value=’Post’ />
+       type='submit'
+       value='Post' />
      </form>
      )
    }

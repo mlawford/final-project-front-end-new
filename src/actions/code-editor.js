@@ -20,3 +20,17 @@ export const updateEvaluatedCode = (code) => {
     payload: code
   };
 };
+
+export const changeCodeMode = (language) => {
+  return {
+    type: 'CHANGE_CODE_MODE',
+    payload: language
+  };
+};
+
+export const updateCodeChallenge = (challenge) => {
+  return {
+    type: 'UPDATE_CHALLENGE',
+    payload: challenge
+  };
+};

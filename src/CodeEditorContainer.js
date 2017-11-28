@@ -5,22 +5,34 @@ import { connect } from 'react-redux';
 import { updateCode } from '../src/actions/code-editor.js';
 import { updateEvaluatedCode } from '../src/actions/code-editor.js';
 import { updatePartnerCode } from '../src/actions/code-editor.js';
+import { changeCodeMode } from '../src/actions/code-editor.js';
 import { bindActionCreators } from 'redux';
+import 'brace/mode/ruby';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 import 'brace/theme/twilight';
+import 'brace/theme/cobalt';
+import 'brace/theme/gob';
+import 'brace/theme/dracula';
 
 
 class CodeEditor extends Component {
   constructor(){
     super()
-      this.ws = new WebSocket('ws://localhost:8080');
-      this.ws.addEventListener('message', (event) => {
-        this.props.updatePartnerCode(event.data)
+    this.ws = new WebSocket('ws://192.168.6.119:8080');
+    this.ws.addEventListener('message', (event) => {
+      this.props.updatePartnerCode(event.data)
       console.log(event)
+      this.codeMode = "javascript"
     })
-
   }
+
+  componentDidUpdate(prevProps){
+    if (this.props.submittedCode !== prevProps.submittedCode){
+      this.checkSolution()
+    }
+  }
+
   handleChange = (input) => {
     this.props.updateCode(input)
     console.log(this.props)
@@ -35,8 +47,27 @@ class CodeEditor extends Component {
     this.evaluateCode()
   }
 
-  evaluateCode = () => {
+  switchCodeMode = (event) => {
+    this.props.changeCodeMode(event.target.value)
+  }
 
+  showEvaluatedCode = () => {
+    this.props.submittedCode
+  }
+
+  checkSolution = () => {
+    console.log(this.props.submittedCode)
+    console.log(this.props.currentChallengeAnswer)
+    if (this.props.currentChallengeAnswer === this.props.submittedCode) {
+      console.log("PASS")
+      alert("Challenge Passed!")
+    } else {
+      console.log("FAIL")
+      alert("Oops! Check your code again!")
+    }
+  }
+
+  evaluateCode = () => {
      try {
         let evaluatedCode = eval(this.props.currentCode)
         this.props.updateEvaluatedCode(evaluatedCode)
@@ -46,28 +77,40 @@ class CodeEditor extends Component {
         this.props.updateEvaluatedCode(errorMessage)
       }
 
-    console.log(this.props.submittedCode)
     this.showEvaluatedCode()
   }
 
-  showEvaluatedCode = () => {
-    this.props.submittedCode
-  }
+  // <div>
+  //   <select className="mode-select" onChange={this.switchCodeMode}>
+  //     <option value="monokai">Monokai</option>
+  //     <option value="cobalt">Cobalt</option>
+  //     <option value="gob">Gob</option>
+  //     <option value="dracula">Dracula</option>
+  //   </select>
+  // </div>
 
   render() {
 
     return (
       <div>
         <div className="code-edit-holder">
+
+          <div className="button-holder">
+            <button className="mode-button button2" onClick={this.switchCodeMode} value="monokai"> Monokai </button>
+            <button className="mode-button button3" onClick={this.switchCodeMode} value="cobalt"> Cobalt </button>
+            <button className="mode-button button4" onClick={this.switchCodeMode} value="dracula"> Dracula</button>
+            <button className="mode-button button5" onClick={this.switchCodeMode} value="gob"> Gob (for psychopaths)</button>
+          </div>
+
         <input type="submit" className="run-code" value="Run Code" onClick={this.handleRunCode}/>
           <AceEditor
             onChange={this.handleChange}
             onLoad = {this.handleLoad}
             mode="javascript"
-            theme="monokai"
+            theme={this.props.mode}
             name="editor"
             width="100%"
-            height="800px"
+            height="600px"
             editorProps={{$blockScrolling: true}}
             fontSize={16}
             showPrintMargin={true}
@@ -75,18 +118,24 @@ class CodeEditor extends Component {
             highlightActiveLine={true}
             value={this.props.currentCode}
             />
+
             <div className="output-holder">
               Code Output: {this.props.submittedCode}
             </div>
+
         </div>
 
         <div className="partner-code">
+
+        <div className="button-holder2">
+
+        </div>
         <AceEditor
           mode="javascript"
           theme="twilight"
           name="editor"
           width="100%"
-          height="921px"
+          height="650px"
           editorProps={{$blockScrolling: true}}
           fontSize={16}
           readOnly={true}
@@ -103,12 +152,12 @@ class CodeEditor extends Component {
 }
 
 function mapStateToProps(state){
-  return {currentCode: state.currentCode, partnerCode: state.partnerCode, submittedCode: state.submittedCode}
+  return {currentCode: state.currentCode, partnerCode: state.partnerCode, submittedCode: state.submittedCode, mode: state.mode, currentChallengeAnswer: state.currentChallengeAnswer}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    updateCode, updatePartnerCode, updateEvaluatedCode,
+    updateCode, updatePartnerCode, updateEvaluatedCode, changeCodeMode,
   }, dispatch);
 };
 
