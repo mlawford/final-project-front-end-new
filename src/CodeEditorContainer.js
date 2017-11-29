@@ -63,7 +63,6 @@ class CodeEditor extends Component {
       alert("Challenge Passed!")
     } else {
       console.log("FAIL")
-      alert("Oops! Check your code again!")
     }
   }
 
@@ -80,15 +79,6 @@ class CodeEditor extends Component {
     this.showEvaluatedCode()
   }
 
-  // <div>
-  //   <select className="mode-select" onChange={this.switchCodeMode}>
-  //     <option value="monokai">Monokai</option>
-  //     <option value="cobalt">Cobalt</option>
-  //     <option value="gob">Gob</option>
-  //     <option value="dracula">Dracula</option>
-  //   </select>
-  // </div>
-
   render() {
 
     return (
@@ -99,7 +89,7 @@ class CodeEditor extends Component {
             <button className="mode-button button2" onClick={this.switchCodeMode} value="monokai"> Monokai </button>
             <button className="mode-button button3" onClick={this.switchCodeMode} value="cobalt"> Cobalt </button>
             <button className="mode-button button4" onClick={this.switchCodeMode} value="dracula"> Dracula</button>
-            <button className="mode-button button5" onClick={this.switchCodeMode} value="gob"> Gob (for psychopaths)</button>
+            <button className="mode-button button5" onClick={this.switchCodeMode} value="gob"> Gob (for serial killers)</button>
           </div>
 
         <input type="submit" className="run-code" value="Run Code" onClick={this.handleRunCode}/>
@@ -117,6 +107,8 @@ class CodeEditor extends Component {
             showGutter={true}
             highlightActiveLine={true}
             value={this.props.currentCode}
+            wrapEnabled={true}
+            indentedSoftWrap= {false}
             />
 
             <div className="output-holder">
@@ -143,6 +135,8 @@ class CodeEditor extends Component {
           showGutter={true}
           highlightActiveLine={false}
           value={this.props.partnerCode}
+          wrapEnabled={true}
+          indentedSoftWrap= {false}
           />
         </div>
 
@@ -152,7 +146,7 @@ class CodeEditor extends Component {
 }
 
 function mapStateToProps(state){
-  return {currentCode: state.currentCode, partnerCode: state.partnerCode, submittedCode: state.submittedCode, mode: state.mode, currentChallengeAnswer: state.currentChallengeAnswer}
+  return {currentCode: state.currentCode, partnerCode: state.partnerCode, submittedCode: state.submittedCode, mode: state.mode, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample}
 }
 
 const mapDispatchToProps = (dispatch) => {

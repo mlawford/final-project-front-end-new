@@ -22,7 +22,8 @@ export default function manageCodEditor(state = {
     case 'UPDATE_CHALLENGE':
       return Object.assign({}, state, {
         currentChallengeContent: action.payload.content,
-        currentChallengeAnswer: action.payload.answer
+        currentChallengeAnswer: action.payload.answer,
+        currentChallengeSample: action.payload.sample
       })
     default:
       return state;

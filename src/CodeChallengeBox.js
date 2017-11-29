@@ -71,7 +71,7 @@ class CodeChallengeBox extends Component {
 }
 
 function mapStateToProps(state){
-  return {currentChallengeTitle: state.currentChallengeTitle, currentChallengeDescription: state.currentChallengeDescription, currentChallengeContent: state.currentChallengeContent, currentChallengeAnswer: state.currentChallengeAnswer, submittedCode: state.submittedCode}
+  return {currentChallengeContent: state.currentChallengeContent, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample, submittedCode: state.submittedCode}
 }
 
 const mapDispatchToProps = (dispatch) => {
