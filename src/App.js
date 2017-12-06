@@ -4,6 +4,7 @@ import LobbyBox from './LobbyBox.js'
 import {Route } from 'react-router-dom';
 import SessionContainer from './SessionContainer.js'
 import LandingPage from './LandingPage.js'
+import PracticeContainer from './PracticeContainer.js'
 
 
 class App extends Component {
@@ -14,6 +15,8 @@ class App extends Component {
           <Route exact path="/" render={props => <LandingPage {...props}/> }/>
           <Route exact path="/session" component={SessionContainer}/>
           <Route exact path="/lobbies" component={LobbyBox}/>
+          <Route exact path="/practice" component={PracticeContainer}/>
+
       </div>
     );
   }

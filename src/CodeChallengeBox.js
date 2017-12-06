@@ -25,17 +25,19 @@ class CodeChallengeBox extends Component {
  }
 
   handleClick = (event) => {
-    console.log(event.target.innerText)
+    this.resetToggles()
 
-    this.props.challenges.forEach(challenge => {
-      if(challenge.difficulty === "Beginner"){
-        this.beginnerChallenges.push(challenge)
-      } else if(challenge.difficulty === "Intermediate"){
-        this.intermediateChallenges.push(challenge)
-      } else {
-        this.advancedChallenges.push(challenge)
-      }
-    })
+    if (this.beginnerChallenges.length === 0){
+      this.props.challenges.forEach(challenge => {
+        if(challenge.difficulty === "Beginner"){
+          this.beginnerChallenges.push(challenge)
+        } else if(challenge.difficulty === "Intermediate"){
+          this.intermediateChallenges.push(challenge)
+        } else {
+          this.advancedChallenges.push(challenge)
+        }
+      })
+    }
 
       if(event.target.innerText === "Beginner"){
         this.easyToggle = true;
@@ -45,11 +47,25 @@ class CodeChallengeBox extends Component {
         this.hardToggle = true;
       }
       this.props.updateCode(this.props.currentCode)
-    }
+  }
+
+  resetToggles = () => {
+    this.easyToggle = false
+    this.mediumToggle = false
+    this.hardToggle = false
+  }
+
+  resetChallenges = () => {
+    this.beginnerChallenges = []
+    this.intermediateChallenges = []
+    this.advancedChallenges = []
+  }
 
   showChallenge = (event) => {
-    console.log(event.target.content)
-    console.log(this.props.currentChallengeContent)
+
+    this.props.updateCode(this.defaultEditor)
+    let newPayload = {content: event.target.value.toString(), answer:  event.target.name.toString()}
+    this.props.updateCodeChallenge(newPayload)
   }
    loadChallengesFromServer() {
      axios.get(this.props.url)
@@ -60,7 +76,8 @@ class CodeChallengeBox extends Component {
    }
 
    componentDidMount() {
-     this.loadChallengesFromServer()
+     this.loadChallengesFromServer();
+     setInterval(this.loadChallengesFromServer, this.props.pollInterval);
    }
 
 
@@ -69,12 +86,26 @@ class CodeChallengeBox extends Component {
    return (
      <div>
      <button className="mode-button button6" onClick={this.handleClick}> Beginner </button>
-     <button className="mode-button button6" onClick={this.handleClick}> Intermediate </button>
-     <button className="mode-button button6" onClick={this.handleClick}> Advanced </button>
-
+     <button className="mode-button button8" onClick={this.handleClick}> Intermediate </button>
+     <button className="mode-button button7" onClick={this.handleClick}> Advanced </button>
+     <br/>
      {this.easyToggle === true? this.beginnerChallenges.map((challenge,idx) => {
        return(
-           <button className="mode-button button6" content={challenge.content} answer={challenge.answer}key={idx} onClick={this.showChallenge}> {idx+1} </button>
+           <button className="mode-button button6" value={challenge.content} name={challenge.answer}key={idx} onClick={this.showChallenge}> {idx+1} </button>
+         )
+         })
+       :null }
+
+     {this.mediumToggle === true? this.intermediateChallenges.map((challenge,idx) => {
+       return(
+           <button className="mode-button button8" value={challenge.content} name={challenge.answer}key={idx} onClick={this.showChallenge}> {idx+1} </button>
+         )
+         })
+       :null }
+
+     {this.hardToggle === true? this.advancedChallenges.map((challenge,idx) => {
+       return(
+           <button className="mode-button button7" value={challenge.content} name={challenge.answer} key={idx} onClick={this.showChallenge}> {idx+1} </button>
          )
          })
        :null }

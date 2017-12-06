@@ -16,14 +16,9 @@ import 'brace/theme/dracula';
 
 
 
-class CodeEditor extends Component {
+class PracticeEditor extends Component {
   constructor(props){
     super(props)
-    this.ws = new WebSocket('ws://192.168.6.119:8080');
-    this.ws.addEventListener('message', (event) => {
-      this.props.updatePartnerCode(event.data)
-      this.codeMode = "javascript"
-    })
 
     this.defaultEditor = `//User: ${this.props.currentUser} \n //Start coding here! \n`
   }
@@ -36,7 +31,6 @@ class CodeEditor extends Component {
 
   handleChange = (input) => {
     this.props.updateCode(input)
-    this.ws.send(input)
   }
 
   handleLoad = () => {
@@ -60,7 +54,6 @@ class CodeEditor extends Component {
     if (this.props.currentChallengeAnswer === this.props.submittedCode) {
       console.log("PASS")
       alert("Challenge Passed!")
-      this.ws.send("Your partner has passed the challenge!")
     } else {
       console.log("FAIL")
     }
@@ -123,22 +116,6 @@ class CodeEditor extends Component {
         <div className="button-holder2">
 
         </div>
-        <AceEditor
-          mode="javascript"
-          theme="twilight"
-          name="editor"
-          width="100%"
-          height="650px"
-          editorProps={{$blockScrolling: true}}
-          fontSize={16}
-          readOnly={true}
-          showPrintMargin={true}
-          showGutter={true}
-          highlightActiveLine={false}
-          value={this.props.partnerCode}
-          wrapEnabled={true}
-          indentedSoftWrap= {false}
-          />
         </div>
 
       </div>
@@ -156,4 +133,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(CodeEditor);
+export default connect(mapStateToProps,mapDispatchToProps)(PracticeEditor);

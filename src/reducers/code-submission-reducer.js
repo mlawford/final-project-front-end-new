@@ -1,6 +1,6 @@
 
 export default function manageCodEditor(state = {
-  currentCode: "//Start writing code here!", partnerCode: "//Your partners code will appear on this side!", submittedCode: "", mode: "monokai", currentChallengeContent: "//Hi! Welcome to Print, you can start by choosing a challenge to work on and if someone else joins, you can work on problems together! Down there is your code editor, you can change it to a color scheme that you like. On the right is where your partners code will appear. Good luck and thanks for using my app! \n \n -Matt Lawford, Flatiron School Grim Repos 2017", currentChallengeAnswer: "", currentChallengeSample: "", lobbies: [], challenges: [], currentUser: "",
+  currentCode: "//Start writing code here!", partnerCode: "//Your partners code will appear on this side!", submittedCode: "", mode: "monokai", currentChallengeContent: "//Hi! Welcome to Print, you can start by choosing a challenge to work on and if someone else joins, you can work on problems together! Down there is your code editor, you can change it to a color scheme that you like. On the right is where your partners code will appear. Good luck and thanks for using my app! \n \n -Matt Lawford, Flatiron School Grim Repos 2017", currentChallengeAnswer: "", currentChallengeSample: "", lobbies: [], challenges: [], currentUser: "", currentUserPassedChallenges: [],
 }, action) {
   switch (action.type) {
     case 'UPDATE_CODE':
@@ -22,7 +22,8 @@ export default function manageCodEditor(state = {
     case 'UPDATE_CHALLENGE':
       return Object.assign({}, state, {
         currentChallengeContent: action.payload.content,
-        currentChallengeAnswer: action.payload.answer
+        currentChallengeAnswer: action.payload.answer,
+        currentChallengeSample: action.payload.sample
       })
     case 'UPDATE_LOBBIES':
       return Object.assign({}, state, {

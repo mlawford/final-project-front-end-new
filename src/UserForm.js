@@ -22,6 +22,7 @@ class UserForm extends Component {
 
  render() {
    return (
+     <div className="input-holder">
      <form onSubmit={ this.handleSubmit }>
 
        <input
@@ -29,6 +30,7 @@ class UserForm extends Component {
        placeholder='Your name…'
        onChange={ this.handleUserChange } />
      </form>
+     </div>
      )
    }
 }

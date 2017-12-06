@@ -1,15 +1,12 @@
 .App {
   text-align: center;
   background-color: white;
-}
+  width: 100%;
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: black;
   height: 150px;
   padding: 20px;
   color: white;
@@ -50,7 +47,7 @@ div.output-holder {
 div.code-challenge {
   margin-left: 10%;
   width:80%;
-  height:250px;
+  height:300px;
   background-color: black;
   color: white;
   border: 2px solid #00ace6;
@@ -199,22 +196,18 @@ div.landing-main {
   background-color: white;
 }
 
-.fullscreen-bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: -100;
+div.landing-footer {
+  height: 100%;
+  width: 100%;
+  background-image: url("https://i.imgur.com/BnYHir8.png");
+  background-position: center;
+  background-size: cover;
+  background-color: #092938;
 }
 
-.fullscreen-bg__video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+div.footer-holder {
+  height: 50%;
+  width: 100%;
 }
 
 div.landing-demo:hover {
@@ -319,6 +312,7 @@ div.button-holder2{
 
 div.background-container{
   height: 100%;
+  width: 100%;
 }
 
 div.color-overlay{
@@ -349,7 +343,7 @@ div.input-holder {
   z-index: 99;
   margin-left: 10%;
   text-shadow: 1px 1px black;
-  width: 100%;
+  width: 50%;
 }
 
 input[type=text]{
@@ -360,10 +354,30 @@ input[type=text]{
     float: left;
 }
 
-.button2 {background-color: #272823;
+.button2 {
+  background-color: #272823;
   color: #74705F;} /* Blue */
-.button3 {background-color: #02233F;
+
+.button3 {
+  background-color: #02233F;
   color: #148AFB;} /* Red */
-.button4 {background-color: #282B36; color: #6273A2;} /* Gray */
-.button5 {background-color: #0B0B0B; color: #21D45D;} /* Black */
-.button6 {background-color: #FB3D35; color: white;} /* Black */
+
+.button4 {
+  background-color: #282B36;
+  color: #6273A2;} /* Gray */
+
+.button5 {
+  background-color: #0B0B0B;
+  color: #21D45D;} /* Black */
+
+.button6 {
+  background-color: ##39d656;
+  color: white;} /* Black */
+
+.button7 {
+  background-color: #FB3D35;
+  color: white;} /* Black */
+
+.button8 {
+  background-color: #ff701e;
+  color: white;} /* Black */
