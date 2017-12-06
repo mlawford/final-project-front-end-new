@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { updateCodeChallenge } from '../src/actions/code-editor.js';
 import { storeChallenges } from '../src/actions/code-editor.js';
 import { updateCode } from '../src/actions/code-editor.js';
+import { passChallenge } from '../src/actions/code-editor.js';
 import { bindActionCreators } from 'redux';
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
@@ -62,7 +63,7 @@ class CodeChallengeBox extends Component {
   }
 
   showChallenge = (event) => {
-
+    this.props.passChallenge(false)
     this.props.updateCode(this.defaultEditor)
     let newPayload = {content: event.target.value.toString(), answer:  event.target.name.toString()}
     this.props.updateCodeChallenge(newPayload)
@@ -137,12 +138,12 @@ class CodeChallengeBox extends Component {
 }
 
 function mapStateToProps(state){
-  return {currentChallengeContent: state.currentChallengeContent, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample, submittedCode: state.submittedCode, challenges: state.challenges, currentUser: state.currentUser, currentCode: state.currentCode}
+  return {currentChallengeContent: state.currentChallengeContent, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample, submittedCode: state.submittedCode, challenges: state.challenges, currentUser: state.currentUser, currentCode: state.currentCode, currentChallengePassed: state.currentChallengePassed}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    updateCodeChallenge, storeChallenges, updateCode,
+    updateCodeChallenge, storeChallenges, updateCode,passChallenge
   }, dispatch);
 };
 

@@ -5,7 +5,9 @@ import { updateCode } from '../src/actions/code-editor.js';
 import { updateEvaluatedCode } from '../src/actions/code-editor.js';
 import { updatePartnerCode } from '../src/actions/code-editor.js';
 import { changeCodeMode } from '../src/actions/code-editor.js';
+import { passChallenge } from '../src/actions/code-editor.js';
 import { bindActionCreators } from 'redux';
+import Dank from './dankComponent.js'
 import 'brace/mode/ruby';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
@@ -60,6 +62,7 @@ class CodeEditor extends Component {
     if (this.props.currentChallengeAnswer === this.props.submittedCode) {
       console.log("PASS")
       alert("Challenge Passed!")
+      this.props.passChallenge(true)
       this.ws.send("Your partner has passed the challenge!")
     } else {
       console.log("FAIL")
@@ -82,6 +85,9 @@ class CodeEditor extends Component {
   render() {
     return (
       <div>
+        {this.props.currentChallengePassed? <Dank /> : null }
+        {this.props.currentChallengePassed?   <div className="alert">Challenge Passed! </div> : null }
+
         <div className="code-edit-holder">
 
           <div className="button-holder">
@@ -147,12 +153,12 @@ class CodeEditor extends Component {
 }
 
 function mapStateToProps(state){
-  return {currentCode: state.currentCode, partnerCode: state.partnerCode, submittedCode: state.submittedCode, mode: state.mode, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample, currentUser: state.currentUser}
+  return {currentCode: state.currentCode, partnerCode: state.partnerCode, submittedCode: state.submittedCode, mode: state.mode, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample, currentUser: state.currentUser, currentChallengePassed: state.currentChallengePassed}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    updateCode, updatePartnerCode, updateEvaluatedCode, changeCodeMode,
+    updateCode, updatePartnerCode, updateEvaluatedCode, changeCodeMode, passChallenge
   }, dispatch);
 };
 

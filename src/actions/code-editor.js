@@ -70,3 +70,10 @@ export const updateUser = (user) => {
     payload: user,
   };
 };
+
+export const passChallenge = (pass) => {
+  return {
+    type: 'PASS_CHALLENGE',
+    payload: pass,
+  };
+};

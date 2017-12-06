@@ -12,6 +12,31 @@
   color: white;
 }
 
+#confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 99;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    16% {
+       opacity: 1;
+    }
+    84% {
+       opacity: 1;
+    }
+    100% {
+       opacity: 0;
+    }
+}
+
 .App-title {
   font-size: 1.5em;
 }
@@ -53,6 +78,15 @@ div.code-challenge {
   border: 2px solid #00ace6;
 }
 
+div.practice-challenge {
+  margin-left: 50%;
+  width:50%;
+  height:200px;
+  background-color: black;
+  color: white;
+  position: absolute;
+}
+
 .holder{
   color: #FF3B2B
 
@@ -90,8 +124,8 @@ div.header-login {
 
 div.header-sign-up {
   font-size: 18px;
-  height: 3%;
-  padding: 1.5%;
+  height: 10%;
+  padding-top: 1.5%;
   width: 8%;
   color: white;
   font-weight: bold;
@@ -199,7 +233,7 @@ div.landing-main {
 div.landing-footer {
   height: 100%;
   width: 100%;
-  background-image: url("https://i.imgur.com/BnYHir8.png");
+  background-image: url("https://i.imgur.com/c5jhVAZ.png");
   background-position: center;
   background-size: cover;
   background-color: #092938;
@@ -307,7 +341,7 @@ div.button-holder{
 
 div.button-holder2{
   background-color: white;
-  height: 56px;
+  height: 62px;
 }
 
 div.background-container{
@@ -381,3 +415,53 @@ input[type=text]{
 .button8 {
   background-color: #ff701e;
   color: white;} /* Black */
+
+.alert {
+
+  -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+  animation: cssAnimation 0s ease-in 5s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  font-size: 24px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 20px;
+  position: absolute;
+  width: 50%;
+  height: 10%;
+  z-index: 95;
+  background-color: #00cc00;
+  opacity: 0.8;
+  color: white;
+  top: 65%;
+  left: 25%;
+}
+
+@keyframes cssAnimation {
+  0% {
+      opacity: 0;
+  }
+  16% {
+     opacity: 1;
+  }
+  84% {
+     opacity: 1;
+  }
+  100% {
+     opacity: 0;
+  }
+}
+@-webkit-keyframes cssAnimation {
+  0% {
+      opacity: 0;
+  }
+  16% {
+     opacity: 1;
+  }
+  84% {
+     opacity: 1;
+  }
+  100% {
+     opacity: 0;
+  }
+}

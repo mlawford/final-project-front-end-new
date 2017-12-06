@@ -13,7 +13,6 @@ export const configureStore = () => {
 }
 
 const store = configureStore();
-
 ReactDOM.render(
 <Provider store={store}>
   <Router>
