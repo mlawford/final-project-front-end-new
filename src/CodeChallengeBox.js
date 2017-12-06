@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import CodeChallenge from './CodeChallenge.js';
 import { connect } from 'react-redux';
 import { updateCodeChallenge } from '../src/actions/code-editor.js';
+import { storeChallenges } from '../src/actions/code-editor.js';
+import { updateCode } from '../src/actions/code-editor.js';
 import { bindActionCreators } from 'redux';
-import brace from 'brace';
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
@@ -15,36 +15,70 @@ class CodeChallengeBox extends Component {
  constructor(props) {
    super(props);
     this.loadChallengesFromServer = this.loadChallengesFromServer.bind(this);
+    this.defaultEditor = `//User: ${this.props.currentUser} \n //Start coding here!`
+    this.beginnerChallenges = []
+    this.intermediateChallenges = []
+    this.advancedChallenges = []
+    this.easyToggle = false
+    this.mediumToggle = false
+    this.hardToggle = false
  }
 
+  handleClick = (event) => {
+    console.log(event.target.innerText)
+
+    this.props.challenges.forEach(challenge => {
+      if(challenge.difficulty === "Beginner"){
+        this.beginnerChallenges.push(challenge)
+      } else if(challenge.difficulty === "Intermediate"){
+        this.intermediateChallenges.push(challenge)
+      } else {
+        this.advancedChallenges.push(challenge)
+      }
+    })
+
+      if(event.target.innerText === "Beginner"){
+        this.easyToggle = true;
+      } else if(event.target.innerText === "Intermediate"){
+        this.mediumToggle = true;
+      } else {
+        this.hardToggle = true;
+      }
+      this.props.updateCode(this.props.currentCode)
+    }
+
+  showChallenge = (event) => {
+    console.log(event.target.content)
+    console.log(this.props.currentChallengeContent)
+  }
    loadChallengesFromServer() {
      axios.get(this.props.url)
      .then(res => {
-       this.props.updateCodeChallenge(res.data[0]);
+       this.props.storeChallenges(res.data);
      })
 
    }
 
    componentDidMount() {
-     this.loadChallengesFromServer();
-     setInterval(this.loadChallengesFromServer, this.props.pollInterval);
+     this.loadChallengesFromServer()
    }
 
-  //  parseChallenge = () => {
-  //    return (
-  //      <div>
-  //   <h3>{this.props.currentChallengeTitle}</h3>
-  //   <p>{this.props.currentChallengeDescription}</p>
-  //   <p>{this.props.currentChallengeContent}</p>
-  //     </div>
-  //   )
-  //  }
-  // <h2>CodeChallenge:</h2>
-  // {this.props.currentChallengeTitle !== ""?<h4> {this.parseChallenge()} </h4>: null}
+
 
  render() {
    return (
      <div>
+     <button className="mode-button button6" onClick={this.handleClick}> Beginner </button>
+     <button className="mode-button button6" onClick={this.handleClick}> Intermediate </button>
+     <button className="mode-button button6" onClick={this.handleClick}> Advanced </button>
+
+     {this.easyToggle === true? this.beginnerChallenges.map((challenge,idx) => {
+       return(
+           <button className="mode-button button6" content={challenge.content} answer={challenge.answer}key={idx} onClick={this.showChallenge}> {idx+1} </button>
+         )
+         })
+       :null }
+
        <div className="code-challenge">
        <AceEditor
          mode="javascript"
@@ -56,11 +90,12 @@ class CodeChallengeBox extends Component {
          fontSize={16}
          readOnly={true}
          showPrintMargin={false}
-         showGutter={false}
+         showGutter={true}
          highlightActiveLine={false}
          value={this.props.currentChallengeContent}
          wrapEnabled={true}
          indentedSoftWrap= {false}
+
 
          />
        </div>
@@ -71,12 +106,12 @@ class CodeChallengeBox extends Component {
 }
 
 function mapStateToProps(state){
-  return {currentChallengeContent: state.currentChallengeContent, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample, submittedCode: state.submittedCode}
+  return {currentChallengeContent: state.currentChallengeContent, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample, submittedCode: state.submittedCode, challenges: state.challenges, currentUser: state.currentUser, currentCode: state.currentCode}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    updateCodeChallenge,
+    updateCodeChallenge, storeChallenges, updateCode,
   }, dispatch);
 };
 

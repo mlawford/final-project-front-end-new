@@ -1,24 +1,23 @@
 //UserForm.js
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateUser } from '../src/actions/code-editor.js';
+import { bindActionCreators } from 'redux';
+
 class UserForm extends Component {
  constructor(props) {
  super(props);
-   this.state = { name: ''};
    this.handleUserChange = this.handleUserChange.bind(this);
    this.handleSubmit = this.handleSubmit.bind(this);
  }
 
  handleUserChange(e) {
-   this.setState({ name: e.target.value });
+   this.props.updateUser(e.target.value)
+   console.log(this.props.currentUser)
  }
 
  handleSubmit(e) {
    e.preventDefault();
-   console.log(`${this.state.name}`)
-   
-  this.props.onUserSubmit({ name: this.state.name});
-  this.setState({ name:''});
-   //we will be tying this into the POST method in a bit
  }
 
  render() {
@@ -28,14 +27,20 @@ class UserForm extends Component {
        <input
        type='text'
        placeholder='Your name…'
-       value={ this.state.name }
        onChange={ this.handleUserChange } />
-
-       <input
-       type='submit'
-       value='Post' />
      </form>
      )
    }
 }
-export default UserForm;
+
+function mapStateToProps(state){
+  return {currentUser: state.currentUser}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    updateUser,
+  }, dispatch);
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(UserForm);

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import brace from 'brace';
 import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
 import { updateCode } from '../src/actions/code-editor.js';
@@ -16,15 +15,17 @@ import 'brace/theme/gob';
 import 'brace/theme/dracula';
 
 
+
 class CodeEditor extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.ws = new WebSocket('ws://192.168.6.119:8080');
     this.ws.addEventListener('message', (event) => {
       this.props.updatePartnerCode(event.data)
-      console.log(event)
       this.codeMode = "javascript"
     })
+
+    this.defaultEditor = `//User: ${this.props.currentUser} \n //Start coding here!`
   }
 
   componentDidUpdate(prevProps){
@@ -35,12 +36,11 @@ class CodeEditor extends Component {
 
   handleChange = (input) => {
     this.props.updateCode(input)
-    console.log(this.props)
     this.ws.send(input)
   }
 
   handleLoad = () => {
-    console.log("loaded")
+
   }
 
   handleRunCode = () => {
@@ -49,6 +49,7 @@ class CodeEditor extends Component {
 
   switchCodeMode = (event) => {
     this.props.changeCodeMode(event.target.value)
+    this.props.updateCode(this.props.currentCode)
   }
 
   showEvaluatedCode = () => {
@@ -56,8 +57,6 @@ class CodeEditor extends Component {
   }
 
   checkSolution = () => {
-    console.log(this.props.submittedCode)
-    console.log(this.props.currentChallengeAnswer)
     if (this.props.currentChallengeAnswer === this.props.submittedCode) {
       console.log("PASS")
       alert("Challenge Passed!")
@@ -80,7 +79,6 @@ class CodeEditor extends Component {
   }
 
   render() {
-
     return (
       <div>
         <div className="code-edit-holder">
@@ -89,10 +87,11 @@ class CodeEditor extends Component {
             <button className="mode-button button2" onClick={this.switchCodeMode} value="monokai"> Monokai </button>
             <button className="mode-button button3" onClick={this.switchCodeMode} value="cobalt"> Cobalt </button>
             <button className="mode-button button4" onClick={this.switchCodeMode} value="dracula"> Dracula</button>
-            <button className="mode-button button5" onClick={this.switchCodeMode} value="gob"> Gob (for serial killers)</button>
+            <button className="mode-button button5" onClick={this.switchCodeMode} value="gob"> Gob </button>
           </div>
 
         <input type="submit" className="run-code" value="Run Code" onClick={this.handleRunCode}/>
+
           <AceEditor
             onChange={this.handleChange}
             onLoad = {this.handleLoad}
@@ -107,6 +106,7 @@ class CodeEditor extends Component {
             showGutter={true}
             highlightActiveLine={true}
             value={this.props.currentCode}
+            defaultValue={this.defaultEditor}
             wrapEnabled={true}
             indentedSoftWrap= {false}
             />
@@ -146,7 +146,7 @@ class CodeEditor extends Component {
 }
 
 function mapStateToProps(state){
-  return {currentCode: state.currentCode, partnerCode: state.partnerCode, submittedCode: state.submittedCode, mode: state.mode, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample}
+  return {currentCode: state.currentCode, partnerCode: state.partnerCode, submittedCode: state.submittedCode, mode: state.mode, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample, currentUser: state.currentUser}
 }
 
 const mapDispatchToProps = (dispatch) => {

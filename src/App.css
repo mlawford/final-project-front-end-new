@@ -48,11 +48,12 @@ div.output-holder {
 
 }
 div.code-challenge {
-  margin-left: 20%;
-  width:60%;
-  height:200px;
+  margin-left: 10%;
+  width:80%;
+  height:250px;
   background-color: black;
   color: white;
+  border: 2px solid #00ace6;
 }
 
 .holder{
@@ -64,9 +65,178 @@ div.logo-image {
   margin-left: 2%;
   content: url("https://i.imgur.com/Cn4iPR1.png");
   height: 85px;
+  z-index: 98;
+  float: left;
+}
+
+div.logo-image-landing {
+  margin-top: 1%;
+  position: absolute;
+  margin-left: 10%;
+  content: url("https://i.imgur.com/Cn4iPR1.png");
+  height: 85px;
   z-index: 99;
   float: left;
 }
+
+div.header-login {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Roboto',serif;
+  margin-top: 3%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 80%;
+  text-shadow: 1px 1px black;
+}
+
+div.header-sign-up {
+  font-size: 18px;
+  height: 3%;
+  padding: 1.5%;
+  width: 8%;
+  color: white;
+  font-weight: bold;
+  font-family: 'Roboto',serif;
+  margin-top: 1.5%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 88%;
+  border: 1px solid white;
+
+  opacity: 1;
+  transition: background-color 1.5s, color 1.5s;
+}
+
+div.header-sign-up:hover {
+  background-color: white;
+  color: black;
+}
+
+div.header-about {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Roboto',serif;
+  margin-top: 3%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 60%;
+  text-shadow: 1px 1px black;
+}
+
+div.header-FAQ {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Roboto',serif;
+  margin-top: 3%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 70%;
+  text-shadow: 1px 1px black;
+}
+
+div.landing-text {
+  font-size: 34px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Roboto',serif;
+  margin-top: 20%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 10%;
+  text-shadow: 1px 2px black;
+}
+
+div.landing-text2 {
+  font-size: 34px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Roboto',serif;
+  margin-top: 24%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 10%;
+  text-shadow: 1px 2px black;
+}
+
+div.landing-demo {
+  font-size: 18px;
+  color: white;
+  font-family: 'Roboto',serif;
+  margin-top: 36%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 10%;
+  border: 1px solid #FB3D35;
+  padding: 1%;
+  width: 10%;
+  background-color: #FB3D35;
+  transition: background-color 1s, color 1.5s, border 1s;
+}
+
+div.header-FAQ {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Roboto',serif;
+  margin-top: 3%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 70%;
+  text-shadow: 1px 1px black;
+
+}
+
+div.landing-main {
+  height: 100%;
+  width: 100%;
+  background-image: url("https://i.imgur.com/VOnwYog.png");
+  background-position: center;
+  background-size: cover;
+  background-color: white;
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+div.landing-demo:hover {
+background-color: #FC7E7A;
+color: white;
+border: 1px solid #FC7E7A;
+}
+
+div.landing-text-body {
+  font-size: 18px;
+  color: white;
+  font-family: 'Roboto',serif;
+  margin-top: 28%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 10%;
+  text-shadow: 1px 1px black;
+  width: 33%;
+  text-align: left;
+  text-shadow: 1px 1px black;
+}
+
 
 div.header {
   position: relative;
@@ -83,6 +253,15 @@ div.title-logo {
   float: left;
   margin-top: 1%;
   margin-left: 2%;
+}
+
+div.bg {
+  background-image: url("https://cdn-images-1.medium.com/max/800/0*vwktgSPc1VQRLB_r.png");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+
+
 }
 
 
@@ -138,9 +317,53 @@ div.button-holder2{
   height: 56px;
 }
 
+div.background-container{
+  height: 100%;
+}
+
+div.color-overlay{
+  height: 100%;
+  background-color: #00ace6;
+  z-index: 97;
+  opacity: 0.3;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("https://cdn-images-1.medium.com/max/800/0*vwktgSPc1VQRLB_r.png");
+
+    /* Full height */
+    height: 550px;
+    width: 100%;
+    z-index: 92;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+div.input-holder {
+  margin-top: 32%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 10%;
+  text-shadow: 1px 1px black;
+  width: 100%;
+}
+
+input[type=text]{
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    float: left;
+}
+
 .button2 {background-color: #272823;
   color: #74705F;} /* Blue */
 .button3 {background-color: #02233F;
   color: #148AFB;} /* Red */
 .button4 {background-color: #282B36; color: #6273A2;} /* Gray */
 .button5 {background-color: #0B0B0B; color: #21D45D;} /* Black */
+.button6 {background-color: #FB3D35; color: white;} /* Black */

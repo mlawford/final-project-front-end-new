@@ -5,7 +5,8 @@ class CodeChallenge extends Component {
  render() {
    return (
    <div>
-     <h3>{this.props.title}</h3>
+   <button className="mode-button button6" onClick={this.props.clicker} title={this.props.title} id={this.props.id}>
+   </button>
    </div>
    )
  }
