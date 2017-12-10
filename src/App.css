@@ -124,7 +124,7 @@ div.header-login {
 
 div.header-sign-up {
   font-size: 18px;
-  height: 10%;
+  height: 8%;
   padding-top: 1.5%;
   width: 8%;
   color: white;
@@ -155,6 +155,17 @@ div.header-about {
   z-index: 99;
   margin-left: 60%;
   text-shadow: 1px 1px black;
+}
+
+div.header-about2 {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Roboto',serif;
+  margin-top: 3%;
+  position: absolute;
+  z-index: 99;
+  margin-left: 90%;
 }
 
 div.header-FAQ {
@@ -361,7 +372,7 @@ div.color-overlay{
     background-image: url("https://cdn-images-1.medium.com/max/800/0*vwktgSPc1VQRLB_r.png");
 
     /* Full height */
-    height: 550px;
+    height: 850px;
     width: 100%;
     z-index: 92;
 

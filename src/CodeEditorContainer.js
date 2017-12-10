@@ -83,9 +83,10 @@ class CodeEditor extends Component {
   }
 
   render() {
+    console.log(this.props.currentChallengePassed)
     return (
       <div>
-        {this.props.currentChallengePassed? <Dank /> : null }
+        {this.props.currentChallengePassed? <Dank currentChallengePassed={this.props.currentChallengePassed} /> : null }
         {this.props.currentChallengePassed?   <div className="alert">Challenge Passed! </div> : null }
 
         <div className="code-edit-holder">

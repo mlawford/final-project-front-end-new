@@ -5,6 +5,7 @@ import { updateCodeChallenge } from '../src/actions/code-editor.js';
 import { storeChallenges } from '../src/actions/code-editor.js';
 import { updateCode } from '../src/actions/code-editor.js';
 import { passChallenge } from '../src/actions/code-editor.js';
+import { updateEvaluatedCode } from '../src/actions/code-editor.js';
 import { bindActionCreators } from 'redux';
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
@@ -64,6 +65,7 @@ class CodeChallengeBox extends Component {
 
   showChallenge = (event) => {
     this.props.passChallenge(false)
+    this.props.updateEvaluatedCode("")
     this.props.updateCode(this.defaultEditor)
     let newPayload = {content: event.target.value.toString(), answer:  event.target.name.toString()}
     this.props.updateCodeChallenge(newPayload)
@@ -143,7 +145,7 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    updateCodeChallenge, storeChallenges, updateCode,passChallenge
+    updateCodeChallenge, storeChallenges, updateCode,passChallenge, updateEvaluatedCode
   }, dispatch);
 };
 

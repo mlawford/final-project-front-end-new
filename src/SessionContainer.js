@@ -9,7 +9,8 @@ class SessionContainer extends Component {
    <div>
    <div className="header">
      <div className="logo-image"/>
-     <div className="title-logo"> Print </div>
+     <div className="title-logo"> PairPrint </div>
+     <div className="header-about2"> LOGOUT </div>
    </div>
      <br/>
      <CodeChallengeBox

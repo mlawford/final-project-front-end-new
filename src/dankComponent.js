@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 
+
 export default class Dank extends Component {
 
   componentDidMount = () => {
-    require('./dank.js')
+    const Fetti = require('./dank.js')
+    Fetti.dankFetti()
+  }
+
+  componentWillUnmount = () => {
+    console.log("HIT")
   }
 
   render() {
