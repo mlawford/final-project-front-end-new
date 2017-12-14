@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import LobbyBox from './LobbyBox.js'
+import LobbyBox from './LobbyComponents/LobbyBox.js'
 import {Route } from 'react-router-dom';
-import SessionContainer from './SessionContainer.js'
+import SessionContainer from './CodeChallengeComponents/SessionContainer.js'
 import LandingPage from './LandingPage.js'
 
 class App extends Component {

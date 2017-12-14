@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserForm from './UserForm.js'
+import UserForm from './UserComponents/UserForm.js'
 
 class LandingPage extends Component {
 
@@ -28,12 +28,12 @@ class LandingPage extends Component {
         <div className="landing-demo" onClick={this.handlClick}>Demo</div>
 
         <UserForm/>
-       <div className="parallax">
+     <div className="parallax">
         <div className="color-overlay">    </div>
-          <div className="landing-main"> </div>
-          <div className="footer-holder">
+        <div className="landing-main"> </div>
+        <div className="footer-holder">
           <div className="landing-footer"> </div>
-          </div>
+        </div>
       </div>
 
     </div>

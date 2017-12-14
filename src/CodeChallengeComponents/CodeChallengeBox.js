@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { updateCodeChallenge } from '../src/actions/code-editor.js';
-import { storeChallenges } from '../src/actions/code-editor.js';
-import { updateCode } from '../src/actions/code-editor.js';
-import { passChallenge } from '../src/actions/code-editor.js';
-import { updateEvaluatedCode } from '../src/actions/code-editor.js';
+import { updateCodeChallenge } from '../actions/code-editor.js';
+import { storeChallenges } from '../actions/code-editor.js';
+import { updateCode } from '../actions/code-editor.js';
+import { passChallenge } from '../actions/code-editor.js';
+import { updateEvaluatedCode } from '../actions/code-editor.js';
 import { bindActionCreators } from 'redux';
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
@@ -41,14 +41,14 @@ class CodeChallengeBox extends Component {
       })
     }
 
-      if(event.target.innerText === "Beginner"){
-        this.easyToggle = true;
-      } else if(event.target.innerText === "Intermediate"){
-        this.mediumToggle = true;
-      } else {
-        this.hardToggle = true;
-      }
-      this.props.updateCode(this.props.currentCode)
+    if(event.target.innerText === "Beginner"){
+      this.easyToggle = true;
+    } else if(event.target.innerText === "Intermediate"){
+      this.mediumToggle = true;
+    } else {
+      this.hardToggle = true;
+    }
+    this.props.updateCode(this.props.currentCode)
   }
 
   resetToggles = () => {
@@ -88,51 +88,51 @@ class CodeChallengeBox extends Component {
  render() {
    return (
      <div>
-     <button className="mode-button button6" onClick={this.handleClick}> Beginner </button>
-     <button className="mode-button button8" onClick={this.handleClick}> Intermediate </button>
-     <button className="mode-button button7" onClick={this.handleClick}> Advanced </button>
-     <br/>
-     {this.easyToggle === true? this.beginnerChallenges.map((challenge,idx) => {
-       return(
-           <button className="mode-button button6" value={challenge.content} name={challenge.answer}key={idx} onClick={this.showChallenge}> {idx+1} </button>
-         )
-         })
-       :null }
+       <button className="mode-button button6" onClick={this.handleClick}> Beginner </button>
+       <button className="mode-button button8" onClick={this.handleClick}> Intermediate </button>
+       <button className="mode-button button7" onClick={this.handleClick}> Advanced </button>
+       <br/>
+       {this.easyToggle === true? this.beginnerChallenges.map((challenge,idx) => {
+         return(
+             <button className="mode-button button6" value={challenge.content} name={challenge.answer}key={idx} onClick={this.showChallenge}> {idx+1} </button>
+           )
+           })
+         :null }
 
-     {this.mediumToggle === true? this.intermediateChallenges.map((challenge,idx) => {
-       return(
-           <button className="mode-button button8" value={challenge.content} name={challenge.answer}key={idx} onClick={this.showChallenge}> {idx+1} </button>
-         )
-         })
-       :null }
+       {this.mediumToggle === true? this.intermediateChallenges.map((challenge,idx) => {
+         return(
+             <button className="mode-button button8" value={challenge.content} name={challenge.answer}key={idx} onClick={this.showChallenge}> {idx+1} </button>
+           )
+           })
+         :null }
 
-     {this.hardToggle === true? this.advancedChallenges.map((challenge,idx) => {
-       return(
-           <button className="mode-button button7" value={challenge.content} name={challenge.answer} key={idx} onClick={this.showChallenge}> {idx+1} </button>
-         )
-         })
-       :null }
+       {this.hardToggle === true? this.advancedChallenges.map((challenge,idx) => {
+         return(
+             <button className="mode-button button7" value={challenge.content} name={challenge.answer} key={idx} onClick={this.showChallenge}> {idx+1} </button>
+           )
+           })
+         :null }
 
-       <div className="code-challenge">
-       <AceEditor
-         mode="javascript"
-         theme="solarized_light"
-         name="editor"
-         width="100%"
-         height="100%"
-         editorProps={{$blockScrolling: false}}
-         fontSize={16}
-         readOnly={true}
-         showPrintMargin={false}
-         showGutter={true}
-         highlightActiveLine={false}
-         value={this.props.currentChallengeContent}
-         wrapEnabled={true}
-         indentedSoftWrap= {false}
+         <div className="code-challenge">
+           <AceEditor
+             mode="javascript"
+             theme="solarized_light"
+             name="editor"
+             width="100%"
+             height="100%"
+             editorProps={{$blockScrolling: false}}
+             fontSize={16}
+             readOnly={true}
+             showPrintMargin={false}
+             showGutter={true}
+             highlightActiveLine={false}
+             value={this.props.currentChallengeContent}
+             wrapEnabled={true}
+             indentedSoftWrap= {false}
 
 
-         />
-       </div>
+             />
+         </div>
      </div>
 
    )

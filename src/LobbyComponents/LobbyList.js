@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Lobby from './Lobby';
 import { connect } from 'react-redux';
-import { addSocketToLobby } from '../src/actions/code-editor.js';
-import { getLobbies } from '../src/actions/code-editor.js';
+import { addSocketToLobby } from '../actions/code-editor.js';
+import { getLobbies } from '../actions/code-editor.js';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 

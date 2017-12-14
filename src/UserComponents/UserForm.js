@@ -1,7 +1,7 @@
 //UserForm.js
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateUser } from '../src/actions/code-editor.js';
+import { updateUser } from '../actions/code-editor.js';
 import { bindActionCreators } from 'redux';
 
 class UserForm extends Component {

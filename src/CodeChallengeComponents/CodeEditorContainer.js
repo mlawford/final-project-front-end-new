@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
-import { updateCode } from '../src/actions/code-editor.js';
-import { updateEvaluatedCode } from '../src/actions/code-editor.js';
-import { updatePartnerCode } from '../src/actions/code-editor.js';
-import { changeCodeMode } from '../src/actions/code-editor.js';
-import { passChallenge } from '../src/actions/code-editor.js';
+import { updateCode } from '../actions/code-editor.js';
+import { updateEvaluatedCode } from '../actions/code-editor.js';
+import { updatePartnerCode } from '../actions/code-editor.js';
+import { changeCodeMode } from '../actions/code-editor.js';
+import { passChallenge } from '../actions/code-editor.js';
 import { bindActionCreators } from 'redux';
-import Dank from './dankComponent.js'
+import Confetti from './ConfettiAnimation.js'
 import 'brace/mode/ruby';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
@@ -17,11 +17,10 @@ import 'brace/theme/gob';
 import 'brace/theme/dracula';
 
 
-
 class CodeEditor extends Component {
   constructor(props){
     super(props)
-    this.ws = new WebSocket('ws://192.168.6.119:8080');
+    this.ws = new WebSocket('ws://localhost:8080');
     this.ws.addEventListener('message', (event) => {
       this.props.updatePartnerCode(event.data)
       this.codeMode = "javascript"
@@ -39,10 +38,6 @@ class CodeEditor extends Component {
   handleChange = (input) => {
     this.props.updateCode(input)
     this.ws.send(input)
-  }
-
-  handleLoad = () => {
-
   }
 
   handleRunCode = () => {
@@ -86,11 +81,10 @@ class CodeEditor extends Component {
     console.log(this.props.currentChallengePassed)
     return (
       <div>
-        {this.props.currentChallengePassed? <Dank currentChallengePassed={this.props.currentChallengePassed} /> : null }
+        {this.props.currentChallengePassed? <Confetti currentChallengePassed={this.props.currentChallengePassed} /> : null }
         {this.props.currentChallengePassed?   <div className="alert">Challenge Passed! </div> : null }
 
         <div className="code-edit-holder">
-
           <div className="button-holder">
             <button className="mode-button button2" onClick={this.switchCodeMode} value="monokai"> Monokai </button>
             <button className="mode-button button3" onClick={this.switchCodeMode} value="cobalt"> Cobalt </button>
@@ -100,54 +94,49 @@ class CodeEditor extends Component {
 
         <input type="submit" className="run-code" value="Run Code" onClick={this.handleRunCode}/>
 
-          <AceEditor
-            onChange={this.handleChange}
-            onLoad = {this.handleLoad}
-            mode="javascript"
-            theme={this.props.mode}
-            name="editor"
-            width="100%"
-            height="600px"
-            editorProps={{$blockScrolling: true}}
-            fontSize={16}
-            showPrintMargin={true}
-            showGutter={true}
-            highlightActiveLine={true}
-            value={this.props.currentCode}
-            defaultValue={this.defaultEditor}
-            wrapEnabled={true}
-            indentedSoftWrap= {false}
-            />
-
-            <div className="output-holder">
-              Code Output: {this.props.submittedCode}
-            </div>
-
-        </div>
-
-        <div className="partner-code">
-
-        <div className="button-holder2">
-
-        </div>
         <AceEditor
+          onChange={this.handleChange}
+          onLoad = {this.handleLoad}
           mode="javascript"
-          theme="twilight"
+          theme={this.props.mode}
           name="editor"
           width="100%"
-          height="650px"
+          height="600px"
           editorProps={{$blockScrolling: true}}
           fontSize={16}
-          readOnly={true}
           showPrintMargin={true}
           showGutter={true}
-          highlightActiveLine={false}
-          value={this.props.partnerCode}
+          highlightActiveLine={true}
+          value={this.props.currentCode}
+          defaultValue={this.defaultEditor}
           wrapEnabled={true}
           indentedSoftWrap= {false}
           />
+
+          <div className="output-holder">
+            Code Output: {this.props.submittedCode}
+          </div>
         </div>
 
+        <div className="partner-code">
+          <div className="button-holder2"> </div>
+          <AceEditor
+            mode="javascript"
+            theme="twilight"
+            name="editor"
+            width="100%"
+            height="650px"
+            editorProps={{$blockScrolling: true}}
+            fontSize={16}
+            readOnly={true}
+            showPrintMargin={true}
+            showGutter={true}
+            highlightActiveLine={false}
+            value={this.props.partnerCode}
+            wrapEnabled={true}
+            indentedSoftWrap= {false}
+            />
+        </div>
       </div>
     );
   }
