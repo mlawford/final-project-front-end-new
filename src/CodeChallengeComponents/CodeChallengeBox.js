@@ -24,7 +24,7 @@ class CodeChallengeBox extends Component {
     this.easyToggle = false
     this.mediumToggle = false
     this.hardToggle = false
- }
+  }
 
   handleClick = (event) => {
     this.resetToggles()
@@ -70,20 +70,18 @@ class CodeChallengeBox extends Component {
     let newPayload = {content: event.target.value.toString(), answer:  event.target.name.toString()}
     this.props.updateCodeChallenge(newPayload)
   }
+
    loadChallengesFromServer() {
      axios.get(this.props.url)
      .then(res => {
        this.props.storeChallenges(res.data);
      })
-
    }
 
    componentDidMount() {
      this.loadChallengesFromServer();
      setInterval(this.loadChallengesFromServer, this.props.pollInterval);
    }
-
-
 
  render() {
    return (
@@ -104,16 +102,17 @@ class CodeChallengeBox extends Component {
              <button className="mode-button button8" value={challenge.content} name={challenge.answer}key={idx} onClick={this.showChallenge}> {idx+1} </button>
            )
            })
-         :null }
+         :null}
 
        {this.hardToggle === true? this.advancedChallenges.map((challenge,idx) => {
          return(
              <button className="mode-button button7" value={challenge.content} name={challenge.answer} key={idx} onClick={this.showChallenge}> {idx+1} </button>
            )
            })
-         :null }
+         :null}
 
          <div className="code-challenge">
+
            <AceEditor
              mode="javascript"
              theme="solarized_light"
@@ -129,9 +128,8 @@ class CodeChallengeBox extends Component {
              value={this.props.currentChallengeContent}
              wrapEnabled={true}
              indentedSoftWrap= {false}
-
-
              />
+
          </div>
      </div>
 

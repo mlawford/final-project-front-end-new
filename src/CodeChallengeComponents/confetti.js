@@ -6,7 +6,7 @@ COLORS = [[255, 255, 255], [255, 144, 0], [255, 255, 255], [255, 144, 0], [0, 27
 
 PI_2 = 2 * Math.PI;
 
-export const dankFetti = () => {
+export const confettiFetti = () => {
   let canvas = document.getElementById("confetti");
   let context = canvas.getContext("2d");
   window.w = window.innerWidth;

@@ -13,7 +13,6 @@ class App extends Component {
         <Route exact path="/" render={props => <LandingPage {...props}/> }/>
         <Route exact path="/session" component={SessionContainer}/>
         <Route exact path="/lobbies" component={LobbyBox}/>
-
       </div>
     );
   }

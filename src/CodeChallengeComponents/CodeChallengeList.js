@@ -6,31 +6,30 @@ import axios from 'axios';
 import CodeChallenge from './CodeChallenge.js'
 
 
-class CodeChallengeList extends Component {
+function CodeChallengeList extends Component{
   constructor(props){
     super(props);
   }
 
-
-  handleClick = (event) => {
-
-  }
-
- render() {
- let challengeNodes = this.props.challenges.map((challenge, idx) => {
-   return (
-     <CodeChallenge content={ challenge.content } key={ idx } id={challenge.id} clicker={this.handleClick}>
-     </CodeChallenge>
-     )
-   })
-   return (
-     <div>
-        {challengeNodes}
-     </div>
-   )
- }
+function renderChallengeNodes = () => {
+  return this.props.challenges.map((challenge, idx) => {
+    return(
+      <CodeChallenge content={ challenge.content } key={ idx } id={challenge.id}>
+      </CodeChallenge>
+    )
+  })
 }
 
+ render(){
+   return(
+     <div>
+        {this.renderChallengeNodes}
+     </div>
+   )
+  }
+}
+
+//Redux functions
 function mapStateToProps(state){
   return {challenges: state.challenges}
 }

@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 
-class CodeChallenge extends Component {
-
- render() {
-   return (
+function CodeChallenge(props){
+  return (
    <div>
-     <button className="mode-button button6" onClick={this.props.clicker} title={this.props.title} id={this.props.id}>
+     <button className="mode-button button6" title={props.title} id={props.id}>
      </button>
    </div>
-   )
- }
+  )
 }
 export default CodeChallenge;

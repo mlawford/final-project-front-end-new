@@ -55,12 +55,11 @@ class CodeEditor extends Component {
 
   checkSolution = () => {
     if (this.props.currentChallengeAnswer === this.props.submittedCode) {
-      console.log("PASS")
       alert("Challenge Passed!")
       this.props.passChallenge(true)
       this.ws.send("Your partner has passed the challenge!")
     } else {
-      console.log("FAIL")
+      alert("Try Again!")
     }
   }
 
@@ -142,6 +141,7 @@ class CodeEditor extends Component {
   }
 }
 
+//Redux functions
 function mapStateToProps(state){
   return {currentCode: state.currentCode, partnerCode: state.partnerCode, submittedCode: state.submittedCode, mode: state.mode, currentChallengeAnswer: state.currentChallengeAnswer, currentChallengeSample: state.currentChallengeSample, currentUser: state.currentUser, currentChallengePassed: state.currentChallengePassed}
 }
