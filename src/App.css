@@ -2,7 +2,6 @@
   text-align: center;
   background-color: white;
   width: 100%;
-
 }
 
 .App-header {
@@ -23,18 +22,18 @@
 }
 
 @keyframes fadeInOut {
-    0% {
-        opacity: 0;
-    }
-    16% {
-       opacity: 1;
-    }
-    84% {
-       opacity: 1;
-    }
-    100% {
-       opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
+  16% {
+   opacity: 1;
+  }
+  84% {
+   opacity: 1;
+  }
+  100% {
+   opacity: 0;
+  }
 }
 
 .App-title {
@@ -67,8 +66,8 @@ div.output-holder {
   text-align: left;
   font-size: 18px;
   z-index: 98;
-
 }
+
 div.code-challenge {
   margin-left: 10%;
   width:80%;
@@ -123,6 +122,7 @@ div.header-login {
 }
 
 div.header-sign-up {
+  display: flex;
   font-size: 18px;
   height: 8%;
   padding-top: 1.5%;
@@ -135,7 +135,6 @@ div.header-sign-up {
   z-index: 99;
   margin-left: 88%;
   border: 1px solid white;
-
   opacity: 1;
   transition: background-color 1.5s, color 1.5s;
 }
@@ -181,6 +180,7 @@ div.header-FAQ {
 }
 
 div.landing-text {
+  display: flex;
   font-size: 34px;
   color: white;
   font-weight: bold;
@@ -193,6 +193,7 @@ div.landing-text {
 }
 
 div.landing-text2 {
+  display: flex;
   font-size: 34px;
   color: white;
   font-weight: bold;
@@ -205,6 +206,7 @@ div.landing-text2 {
 }
 
 div.landing-demo {
+  display: flex;
   font-size: 18px;
   color: white;
   font-family: 'Roboto',serif;
@@ -256,12 +258,13 @@ div.footer-holder {
 }
 
 div.landing-demo:hover {
-background-color: #FC7E7A;
-color: white;
-border: 1px solid #FC7E7A;
+  background-color: #FC7E7A;
+  color: white;
+  border: 1px solid #FC7E7A;
 }
 
 div.landing-text-body {
+  display: flex;
   font-size: 18px;
   color: white;
   font-family: 'Roboto',serif;
@@ -274,7 +277,6 @@ div.landing-text-body {
   text-align: left;
   text-shadow: 1px 1px black;
 }
-
 
 div.header {
   position: relative;
@@ -298,8 +300,6 @@ div.bg {
   width: 100%;
   height: 100%;
   background-size: cover;
-
-
 }
 
 
@@ -334,16 +334,16 @@ div.bg {
 }
 
 .mode-button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 div.button-holder{
@@ -365,24 +365,24 @@ div.color-overlay{
   background-color: #00ace6;
   z-index: 97;
   opacity: 0.3;
+  display: flex;
 }
 
 .parallax {
-    /* The image used */
-    background-image: url("https://cdn-images-1.medium.com/max/800/0*vwktgSPc1VQRLB_r.png");
-
-    /* Full height */
-    height: 850px;
-    width: 100%;
-    z-index: 92;
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
+  /* The image used */
+  background-image: url("https://cdn-images-1.medium.com/max/800/0*vwktgSPc1VQRLB_r.png");
+  /* Full height */
+  height: 850px;
+  width: 100%;
+  z-index: 92;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
 div.input-holder {
+  display: flex;
   margin-top: 32%;
   position: absolute;
   z-index: 99;
@@ -392,24 +392,27 @@ div.input-holder {
 }
 
 input[type=text]{
-    padding: 12px 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    float: left;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  float: left;
 }
 
 .button2 {
   background-color: #272823;
-  color: #74705F;} /* Blue */
+  color: #74705F;
+} /* Blue */
 
 .button3 {
   background-color: #02233F;
-  color: #148AFB;} /* Red */
+  color: #148AFB;
+} /* Red */
 
 .button4 {
   background-color: #282B36;
-  color: #6273A2;} /* Gray */
+  color: #6273A2;
+} /* Gray */
 
 .button5 {
   background-color: #0B0B0B;
@@ -417,18 +420,20 @@ input[type=text]{
 
 .button6 {
   background-color: ##39d656;
-  color: white;} /* Black */
+  color: white;
+} /* Black */
 
 .button7 {
   background-color: #FB3D35;
-  color: white;} /* Black */
+  color: white;
+} /* Black */
 
 .button8 {
   background-color: #ff701e;
-  color: white;} /* Black */
+  color: white;
+} /* Black */
 
 .alert {
-
   -webkit-animation: cssAnimation 0s ease-in 5s forwards;
   animation: cssAnimation 0s ease-in 5s forwards;
   -webkit-animation-fill-mode: forwards;
@@ -450,29 +455,29 @@ input[type=text]{
 
 @keyframes cssAnimation {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   16% {
-     opacity: 1;
+   opacity: 1;
   }
   84% {
-     opacity: 1;
+   opacity: 1;
   }
   100% {
-     opacity: 0;
+   opacity: 0;
   }
 }
 @-webkit-keyframes cssAnimation {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   16% {
-     opacity: 1;
+   opacity: 1;
   }
   84% {
-     opacity: 1;
+   opacity: 1;
   }
   100% {
-     opacity: 0;
+   opacity: 0;
   }
 }
